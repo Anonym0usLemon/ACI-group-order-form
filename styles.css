@@ -1,0 +1,498 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background-color: black;
+  padding-block: 30px;
+}
+@media only screen and (max-width: 830px) {
+  body {
+    padding-inline: 15px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  body {
+    padding-inline: 2px;
+  }
+}
+
+.active-text {
+  color: #185e73;
+}
+.active-text small {
+  color: gray;
+}
+
+.normal-text {
+  color: lightgray;
+}
+
+.container {
+  width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  padding-block: 45px;
+  padding-inline: 45px;
+}
+@media only screen and (max-width: 830px) {
+  .container {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .container {
+    padding-inline: 30px;
+  }
+}
+
+/****************************************************************************************************************
+*** Progress Bar ***
+****************************************************************************************************************/
+.progressBar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  color: lightgray;
+}
+@media only screen and (max-width: 600px) {
+  .progressBar {
+    display: none;
+  }
+}
+
+.post-progressBar {
+  display: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-progressBar li {
+  width: 100% !important;
+}
+@media only screen and (max-width: 600px) {
+  .post-progressBar {
+    display: block !important;
+  }
+}
+
+.progressBar li {
+  list-style-type: none;
+  font-size: 15px;
+  width: 20%;
+  float: left;
+  font-weight: 400;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.progressBar li div {
+  background-color: lightgray;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  display: block;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  padding: 2px;
+}
+
+svg {
+  height: 20px;
+  fill: white;
+  color: white;
+}
+
+.progressBar .active {
+  color: #185e73 !important;
+}
+
+.progressBar li.active div {
+  background-color: #185e73;
+}
+
+.progressBar li::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: lightgray;
+  position: absolute;
+  left: 60px;
+  top: 25px;
+  z-index: -1;
+}
+
+.progressBar #confirm::after {
+  width: 0;
+}
+
+.progressBar li.active::before,
+.progressBar li.next::after,
+.postProgressBar li.active::after {
+  background-color: #185e73;
+}
+
+/****************************************************************************************************************
+*** Form, Table and Typography ***
+****************************************************************************************************************/
+.table-container {
+  overflow-x: scroll;
+}
+
+table {
+  width: 100%;
+  min-width: 680px;
+  border-radius: 2px;
+  margin-block: 30px;
+}
+
+table, td, th {
+  border: 1.5px solid lightgray;
+  padding: 0px;
+  border-spacing: 0;
+}
+
+td, th {
+  padding-inline: 10px;
+  padding-block: 10px;
+}
+
+th {
+  width: 250px;
+}
+@media only screen and (max-width: 770px) {
+  th {
+    width: 200px;
+  }
+}
+
+.remove-row {
+  display: block;
+  height: 20px;
+  width: 20px;
+  margin: 10px;
+  background-color: red;
+}
+
+.classroom-list-table th {
+  padding: 5px;
+  width: unset;
+}
+.classroom-list-table td {
+  padding-inline: 0 !important;
+  padding-block: 0 !important;
+}
+.classroom-list-table input {
+  border: none;
+}
+
+@keyframes fadeIn {
+  from { /* Starting opacity */
+    opacity: 0;
+  }
+  to { /* End opacity */
+    opacity: 1;
+  }
+}
+.hidden {
+  display: none !important;
+}
+
+.form-group {
+  display: none;
+  animation: fadeIn 1s;
+}
+
+.form-group.form-active {
+  display: block;
+}
+
+.form-group.policy ol li {
+  margin-block: 15px;
+}
+.form-group.policy h3 {
+  margin-top: 45px;
+  margin-bottom: 15px;
+}
+
+.finished .row {
+  margin-top: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.finished .row h3 {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: normal;
+}
+@media only screen and (max-width: 600px) {
+  .finished .row {
+    margin-top: 30px;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+@media only screen and (max-width: 760px) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+.row h2 {
+  color: #185e73;
+  font-weight: normal;
+}
+@media only screen and (max-width: 400px) {
+  .row h2 {
+    font-size: 1.2rem;
+  }
+}
+
+.row h3 {
+  color: gray;
+}
+@media only screen and (max-width: 400px) {
+  .row h3 {
+    font-size: 1rem;
+  }
+}
+
+.form-step {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.form-control {
+  position: relative;
+  margin: 1rem;
+  margin-block: 1.2rem;
+}
+@media only screen and (max-width: 600px) {
+  .form-control {
+    margin-block: 1rem;
+  }
+}
+
+.form-control label {
+  font-size: 16px;
+  position: absolute;
+  height: 19px;
+  padding: 4px 7px;
+  top: -15px;
+  left: 10px;
+  color: #a2a2a2;
+  background-color: white;
+}
+@media only screen and (max-width: 600px) {
+  .form-control label {
+    font-size: 14px;
+    top: -14px;
+  }
+}
+
+.form-control textarea {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  height: 150px;
+}
+
+input[type=file] {
+  display: none;
+}
+
+.input-type-file label {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  padding: 1.75rem;
+  margin-top: 1rem;
+}
+@media only screen and (max-width: 600px) {
+  .input-type-file label {
+    height: 50px;
+  }
+}
+.input-type-file label span {
+  background-color: #185e73;
+  color: white;
+  padding: 0.75rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  height: 60px;
+}
+@media only screen and (max-width: 600px) {
+  input {
+    height: 50px;
+  }
+}
+
+.form-control-checkbox {
+  margin-block: 3rem;
+  margin-inline: 2.5rem;
+}
+.form-control-checkbox label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+.form-control-checkbox label input {
+  height: 30px;
+  width: 30px;
+}
+.form-control-checkbox label span {
+  width: 100%;
+}
+
+.checkbox-group {
+  background-color: lightgray;
+  padding: 25px;
+  border-radius: 3px;
+  margin-inline: 1rem !important;
+}
+
+.input-group {
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 25px;
+  margin: 1rem;
+}
+.input-group .input-group-title {
+  color: #185e73;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  text-align: right;
+}
+
+.borderOptions {
+  padding-inline: 17px;
+  background-color: lightgray;
+  padding: 25px;
+  margin-inline: 1rem;
+  border-radius: 3px;
+  padding-top: 5px;
+  margin-bottom: 45px;
+}
+
+select {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  height: 60px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+@media only screen and (max-width: 600px) {
+  select {
+    height: 50px;
+  }
+}
+
+button, .button {
+  padding: 0.75rem;
+  display: block;
+  text-decoration: none;
+  background-color: #185e73;
+  color: #f3f3f3;
+  text-align: center;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin-left: auto;
+  width: 50%;
+  font-size: 15px;
+}
+
+button:hover, .button:hover {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px #185e73;
+}
+
+.button-cont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10%;
+  margin-top: 45px;
+}
+
+.radio-buttons {
+  margin-top: 30px;
+  margin-bottom: 45px;
+  padding-left: 35px;
+}
+.radio-buttons .radio-title {
+  font-size: 18px;
+  color: #185e73;
+}
+.radio-buttons label {
+  font-size: 16px;
+  color: gray;
+}
+.radio-buttons .cont {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  padding-block: 0;
+  width: 400px;
+}
+.radio-buttons input {
+  height: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 4px;
+  width: unset !important;
+}
+.radio-buttons .container input:checked ~ .checkmark {
+  background-color: #185e73;
+}
+
+label {
+  color: gray;
+}/*# sourceMappingURL=styles.css.map */
