@@ -398,7 +398,7 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="classlist-table-body">
                         <tr class="subject-line">
                             <th><span class="subject-number">1</span> )</th>
                             <td>
@@ -408,12 +408,13 @@
                                 <input type="text" class="subject-filename" placeholder="File or Teacher Name"><span class="error hidden">*</span>
                             </td>
                             <td>
-                                <input type="number" class="subject-quantity" min="0" max="99" value="1">
+                                <input type="number" class="subject-quantity" min="1" max="99">
                             </td>
-                            <td style="text-align:left"><span id="remove" class="remove-row"></span></td>
+                            <td><img onclick="handleRemoveRow()" class="remove" src="./remove.png" alt=""></td>
                         </tr>
                     </tbody>
                 </table>
+                <a class="button add-classroom-btn" id="add-classlist">Add Another Classroom</a>
             </div>
             <div class="button-cont">
                 <a class="button previous">Previous</a>
@@ -504,6 +505,40 @@
         })
     } 
 
+
+    const classListTableBody = document.getElementById('classlist-table-body');
+    const addClassListBtn = document.getElementById('add-classlist');
+    let currentRowNumber = 2;
+
+    addClassListBtn.addEventListener('click', () => {
+        const newRow = classListTableBody.firstElementChild.cloneNode(true); // Clone the first row (excluding header)
+        newRow.querySelector('.remove').addEventListener('click', handleRemoveRow); // Add event listener for the new row's remove button
+        classListTableBody.appendChild(newRow);
+
+        // Update subject number for the new row
+        const subjectNumber = newRow.querySelector('.subject-number');
+        subjectNumber.textContent = `${currentRowNumber++}`; // Increment after assignment for correct numbering
+  
+    });
+
+    function updateSubjectNumbers() {
+        let rowNumber = 1;
+        const subjectRows = classListTableBody.querySelectorAll('.subject-line');
+        subjectRows.forEach(row => {
+            const subjectNumber = row.querySelector('.subject-number');
+            subjectNumber.textContent = `${rowNumber++}`; // Update subject number for each row
+        });
+        currentRowNumber = rowNumber; // Update currentRowNumber after all updates
+    }
+
+    function handleRemoveRow() {
+        const row = event.currentTarget.parentNode.parentNode; // Get the row containing the remove button
+        if (currentRowNumber > 2) { // Check if not the first row and has a next sibling
+            classListTableBody.removeChild(row);
+            updateSubjectNumbers();
+
+        }
+    }
 
 
     //  Form Validation  // 
